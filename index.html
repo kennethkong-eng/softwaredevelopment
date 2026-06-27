@@ -639,6 +639,14 @@
       min-height: 1em; /* reserve space so layout doesn't jump */
     }
 
+    .lm-fineprint { color: var(--graphite); margin: 0; }
+
+    /* Emphasized outcome metric inside a testimonial */
+    .quote blockquote strong {
+      font-weight: 600;
+      box-shadow: inset 0 -0.12em 0 var(--signal-wash);
+    }
+
     .form-success {
       display: none;
       align-items: center;
@@ -668,6 +676,11 @@
       font-size: 0.85rem;
     }
     .form-error.is-visible { display: flex; }
+    .form-error a {
+      color: inherit;
+      font-weight: 600;
+      text-underline-offset: 2px;
+    }
 
     /* ---------- Footer ---------- */
     .site-footer {
@@ -839,6 +852,7 @@
           <li><a href="#services">Services</a></li>
           <li><a href="#process">Process</a></li>
           <li><a href="#testimonials">Clients</a></li>
+          <li><a href="#resources">Free checklist</a></li>
         </ul>
         <a href="#contact" class="btn btn-primary">Start a project</a>
       </nav>
@@ -860,7 +874,7 @@
             </p>
             <div class="hero-actions">
               <a href="#contact" class="btn btn-primary" id="hero-cta">Start a project <span class="arrow">→</span></a>
-              <a href="#process" class="btn btn-ghost">See how we work</a>
+              <a href="#resources" class="btn btn-ghost">Get the free checklist</a>
             </div>
             <p class="trust mono">
               <span>Trusted by teams at</span>
@@ -984,7 +998,7 @@
           <figure class="quote">
             <span class="qmark">"</span>
             <blockquote>
-              Northbyte rebuilt our platform in four months and cut page loads in half.
+              Northbyte rebuilt our platform in four months and <strong>cut page loads in half</strong>.
               They felt like an extension of our own team, not an agency.
             </blockquote>
             <figcaption class="client">
@@ -1029,7 +1043,55 @@
       </div>
     </section>
 
-    <!-- ============ 5. Enquiry Form ============ -->
+    <!-- ============ 5. Lead magnet: low-friction email capture ============ -->
+    <section class="section" id="resources">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-aside">
+            <span class="eyebrow">Free resource</span>
+            <h2 style="font-size:clamp(1.7rem,4vw,2.5rem);margin-bottom:0.7rem;">The Pre-Build Checklist</h2>
+            <p>25 questions we run in week one with every client — to de-risk scope, budget and timeline before a line of production code is written.</p>
+            <div class="channel"><span class="k">Format</span><span>PDF · 2 pages</span></div>
+            <div class="channel"><span class="k">Read time</span><span>&lt; 10 min</span></div>
+            <div class="channel"><span class="k">Price</span><span>Free</span></div>
+          </div>
+
+          <div class="form-wrap">
+            <!-- Confirmation banner (revealed by JS on success) -->
+            <div class="form-success" id="lm-success" role="status" aria-live="polite">
+              <span aria-hidden="true">✓</span>
+              <span>Check your inbox — the checklist is on its way.</span>
+            </div>
+
+            <!-- Error banner (revealed by JS if the send fails) -->
+            <div class="form-error" id="lm-error" role="alert" aria-live="assertive">
+              <span aria-hidden="true">!</span>
+              <span>Something went wrong. Please try again, or email us directly.</span>
+            </div>
+
+            <form id="lead-magnet-form" novalidate>
+              <div class="form-grid">
+                <div class="field field-full">
+                  <label for="lm-email">Email</label>
+                  <input type="email" id="lm-email" name="email" autocomplete="email"
+                         placeholder="jane@company.com" required
+                         aria-describedby="lm-email-error" />
+                  <span class="error-msg" id="lm-email-error" role="alert"></span>
+                </div>
+
+                <div class="field field-full">
+                  <button type="submit" class="btn btn-primary btn-block">Send me the checklist <span class="arrow">→</span></button>
+                </div>
+
+                <p class="field-full mono lm-fineprint">No spam. Unsubscribe anytime.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6. Enquiry Form ============ -->
     <section class="section" id="contact">
       <div class="container">
         <div class="contact-grid">
@@ -1052,7 +1114,7 @@
             <!-- Error banner (revealed by JS if the send fails) -->
             <div class="form-error" id="form-error" role="alert" aria-live="assertive">
               <span aria-hidden="true">!</span>
-              <span>Something went wrong sending your brief. Please try again, or email us directly.</span>
+              <span>Couldn't send your brief automatically. Please <a id="form-error-mailto" href="mailto:kennethkong@me.com">email it to us directly</a> — your details are pre-filled, just hit send.</span>
             </div>
 
             <form id="enquiry-form" novalidate>
@@ -1340,6 +1402,20 @@
           })
           .catch(function (error) {
             console.error('Submission error:', error);
+            // Pre-fill the mailto fallback so the enquiry is never lost even
+            // when the relay is unreachable, unactivated, or opened as a file.
+            var mailto = document.getElementById('form-error-mailto');
+            if (mailto) {
+              var body =
+                'Name: ' + formData.name + '\n' +
+                'Email: ' + formData.email + '\n' +
+                'Phone: ' + (formData.phone || '—') + '\n' +
+                'What you need: ' + formData.service + '\n\n' +
+                formData.message;
+              mailto.href = 'mailto:kennethkong@me.com'
+                + '?subject=' + encodeURIComponent(formData._subject)
+                + '&body=' + encodeURIComponent(body);
+            }
             failure.classList.add('is-visible');
             failure.setAttribute('tabindex', '-1');
             failure.focus();
