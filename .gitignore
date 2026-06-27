@@ -3,3 +3,7 @@
 .DS_Store
 .env
 .env.*
+
+# Local tooling artifacts (not part of the site)
+.playwright-mcp/
+.agents/

@@ -98,6 +98,8 @@
       --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       --font-head: 'Archivo', var(--font-body);
       --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', 'Menlo', 'Consolas', monospace;
+
+      --wa-green: #25d366;   /* WhatsApp brand green — widget only */
     }
 
     /* ---------- Reset / base ---------- */
@@ -652,6 +654,21 @@
     }
     .form-success.is-visible { display: flex; }
 
+    .form-error {
+      display: none;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--error-wash);
+      border: 1px solid var(--error);
+      color: var(--error);
+      border-radius: var(--radius-sm);
+      padding: 0.9rem 1.1rem;
+      margin-bottom: 1.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+    .form-error.is-visible { display: flex; }
+
     /* ---------- Footer ---------- */
     .site-footer {
       background: var(--ink);
@@ -684,6 +701,83 @@
       .quotes { grid-template-columns: repeat(3, 1fr); }
       .contact-grid { grid-template-columns: 0.8fr 1.2fr; }
     }
+
+    /* ---------- WhatsApp floating widget ---------- */
+    .wa-widget {
+      position: fixed;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.75rem;
+    }
+    .wa-panel {
+      width: min(20rem, calc(100vw - 2.5rem));
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform-origin: bottom right;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .wa-panel[hidden] { display: none; }
+    .wa-panel.is-closing,
+    .wa-panel.is-opening { opacity: 0; transform: translateY(0.5rem) scale(0.96); }
+    .wa-panel-head {
+      background: var(--wa-green);
+      color: #05291a;
+      padding: 0.9rem 1.1rem;
+      font-family: var(--font-mono);
+    }
+    .wa-panel-head strong { display: block; font-size: 0.95rem; }
+    .wa-panel-head span { font-size: 0.78rem; opacity: 0.85; }
+    .wa-panel-body { padding: 0.85rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .wa-panel-body p {
+      margin: 0 0 0.15rem;
+      font-size: 0.78rem;
+      color: var(--graphite);
+      font-family: var(--font-mono);
+    }
+    .wa-suggest {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 0.6rem 0.75rem;
+      font: inherit;
+      font-size: 0.85rem;
+      color: var(--ink);
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .wa-suggest:hover,
+    .wa-suggest:focus-visible {
+      border-color: var(--wa-green);
+      background: rgba(37, 211, 102, 0.08);
+      outline: none;
+    }
+    .wa-fab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      background: var(--wa-green);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .wa-fab:hover { transform: scale(1.06); }
+    .wa-fab:focus-visible { outline: 3px solid var(--wa-green); outline-offset: 3px; }
+    .wa-fab svg { width: 1.9rem; height: 1.9rem; }
 
     /* Respect reduced-motion preferences */
     @media (prefers-reduced-motion: reduce) {
@@ -923,6 +1017,12 @@
               <span>Brief received. We'll reply within one business day.</span>
             </div>
 
+            <!-- Error banner (revealed by JS if the send fails) -->
+            <div class="form-error" id="form-error" role="alert" aria-live="assertive">
+              <span aria-hidden="true">!</span>
+              <span>Something went wrong sending your brief. Please try again, or email us directly.</span>
+            </div>
+
             <form id="enquiry-form" novalidate>
               <div class="form-grid">
                 <div class="field">
@@ -987,6 +1087,30 @@
       <p style="margin:0;"><a href="#contact">Start a project →</a></p>
     </div>
   </footer>
+
+  <!-- ============ WhatsApp floating widget ============ -->
+  <div class="wa-widget" id="wa-widget">
+    <div class="wa-panel" id="wa-panel" role="dialog" aria-label="Chat with Northbyte on WhatsApp" hidden>
+      <div class="wa-panel-head">
+        <strong>Chat with Northbyte</strong>
+        <span>We typically reply within minutes</span>
+      </div>
+      <div class="wa-panel-body">
+        <p>Pick a question or start your own:</p>
+        <button type="button" class="wa-suggest">I'd like a quote for a web or SaaS app.</button>
+        <button type="button" class="wa-suggest">Can you build a mobile app for my idea?</button>
+        <button type="button" class="wa-suggest">I need help with API / backend work.</button>
+        <button type="button" class="wa-suggest">What are your rates and timelines?</button>
+        <button type="button" class="wa-suggest">Hi! I have a project to discuss.</button>
+      </div>
+    </div>
+    <button type="button" class="wa-fab" id="wa-fab"
+            aria-label="Open WhatsApp chat" aria-expanded="false" aria-controls="wa-panel">
+      <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+        <path d="M16.04 4C9.96 4 5.02 8.94 5.02 15.02c0 1.94.51 3.84 1.48 5.51L5 27l6.64-1.74a11 11 0 0 0 4.4.92h.01c6.08 0 11.02-4.94 11.02-11.02C27.07 8.94 22.12 4 16.04 4Zm0 20.18h-.01a9.1 9.1 0 0 1-4.64-1.27l-.33-.2-3.94 1.03 1.05-3.84-.22-.34a9.13 9.13 0 0 1-1.4-4.87c0-5.04 4.11-9.15 9.16-9.15a9.1 9.1 0 0 1 9.14 9.16c0 5.05-4.11 9.15-9.15 9.15Zm5.02-6.85c-.27-.14-1.63-.8-1.88-.9-.25-.09-.43-.14-.62.14-.18.27-.71.9-.87 1.08-.16.18-.32.2-.59.07-.27-.14-1.16-.43-2.21-1.36-.82-.73-1.37-1.63-1.53-1.9-.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.46.09-.18.05-.34-.02-.48-.07-.14-.62-1.49-.85-2.04-.22-.53-.45-.46-.62-.47l-.53-.01c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.29 0 1.35.98 2.66 1.12 2.84.14.18 1.94 2.96 4.7 4.15.66.28 1.17.45 1.57.58.66.21 1.26.18 1.73.11.53-.08 1.63-.67 1.86-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.18-.52-.32Z"/>
+      </svg>
+    </button>
+  </div>
 
   <script>
     (function () {
@@ -1054,6 +1178,13 @@
       // --- Enquiry form: validation + submission ---
       var form    = document.getElementById('enquiry-form');
       var success = document.getElementById('form-success');
+      var failure = document.getElementById('form-error');
+      var submitBtn = form.querySelector('button[type="submit"]');
+
+      // Where enquiries are delivered. FormSubmit relays this POST to the
+      // address below (no backend needed). The AJAX endpoint returns JSON so
+      // we can keep the in-page confirmation instead of a full-page redirect.
+      var ENQUIRY_ENDPOINT = 'https://formsubmit.co/ajax/kennethkong@me.com';
 
       var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -1105,9 +1236,12 @@
         });
       });
 
+      var defaultBtnHTML = submitBtn.innerHTML;
+
       form.addEventListener('submit', function (event) {
         event.preventDefault();
         success.classList.remove('is-visible');
+        failure.classList.remove('is-visible');
 
         var firstInvalid = validate();
         if (firstInvalid) {
@@ -1115,23 +1249,30 @@
           return;
         }
 
-        // Collect the form data into a plain object.
+        // Collect the form data into a plain object. The keys prefixed with "_"
+        // are FormSubmit directives: a custom subject line, a tidy table layout
+        // in the email, and captcha disabled (required for the AJAX endpoint).
         var formData = {
           name:    document.getElementById('name').value.trim(),
           email:   document.getElementById('email').value.trim(),
           phone:   document.getElementById('phone').value.trim(),
           service: document.getElementById('service').value,
-          message: document.getElementById('message').value.trim()
+          message: document.getElementById('message').value.trim(),
+          _subject: 'New enquiry from ' + document.getElementById('name').value.trim() + ' — Northbyte',
+          _template: 'table',
+          _captcha: 'false'
         };
 
-        // Placeholder for a real backend call — log to the console for now.
-        console.log('Enquiry submitted:', formData);
+        // Reflect a sending state and prevent double submission.
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
 
-        /*
-        // --- Example: POST the enquiry to a real API endpoint ---
-        fetch('https://api.northbyte.example/enquiries', {
+        fetch(ENQUIRY_ENDPOINT, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
           body: JSON.stringify(formData)
         })
           .then(function (response) {
@@ -1139,18 +1280,84 @@
             return response.json();
           })
           .then(function (data) {
-            console.log('Server response:', data);
+            if (data.success !== true && data.success !== 'true') {
+              throw new Error(data.message || 'Submission rejected');
+            }
+            // Show confirmation, reset the form, and move focus to the banner.
+            success.classList.add('is-visible');
+            form.reset();
+            success.setAttribute('tabindex', '-1');
+            success.focus();
           })
           .catch(function (error) {
             console.error('Submission error:', error);
+            failure.classList.add('is-visible');
+            failure.setAttribute('tabindex', '-1');
+            failure.focus();
+          })
+          .then(function () {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = defaultBtnHTML;
           });
-        */
+      });
+    })();
 
-        // Show confirmation, reset the form, and move focus to the banner.
-        success.classList.add('is-visible');
-        form.reset();
-        success.setAttribute('tabindex', '-1');
-        success.focus();
+    /* ---------- WhatsApp floating widget ---------- */
+    (function () {
+      'use strict';
+
+      var WA_NUMBER = '6597275248'; // Singapore number, international format (no +)
+
+      var widget = document.getElementById('wa-widget');
+      var fab    = document.getElementById('wa-fab');
+      var panel  = document.getElementById('wa-panel');
+      if (!widget || !fab || !panel) return;
+
+      function openPanel() {
+        panel.hidden = false;
+        // Animate in on the next frame so the transition runs.
+        panel.classList.add('is-opening');
+        requestAnimationFrame(function () { panel.classList.remove('is-opening'); });
+        fab.setAttribute('aria-expanded', 'true');
+        fab.setAttribute('aria-label', 'Close WhatsApp chat');
+        var first = panel.querySelector('.wa-suggest');
+        if (first) first.focus();
+      }
+
+      function closePanel(returnFocus) {
+        panel.hidden = true;
+        panel.classList.remove('is-opening');
+        fab.setAttribute('aria-expanded', 'false');
+        fab.setAttribute('aria-label', 'Open WhatsApp chat');
+        if (returnFocus) fab.focus();
+      }
+
+      function isOpen() { return fab.getAttribute('aria-expanded') === 'true'; }
+
+      function openWhatsApp(text) {
+        var url = 'https://wa.me/' + WA_NUMBER +
+                  (text ? '?text=' + encodeURIComponent(text) : '');
+        window.open(url, '_blank', 'noopener');
+        closePanel(false);
+      }
+
+      fab.addEventListener('click', function () {
+        isOpen() ? closePanel(true) : openPanel();
+      });
+
+      // Each suggestion opens WhatsApp pre-filled with that message.
+      panel.querySelectorAll('.wa-suggest').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          openWhatsApp(btn.textContent.trim());
+        });
+      });
+
+      // Close on Escape, or when clicking outside the widget.
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && isOpen()) closePanel(true);
+      });
+      document.addEventListener('click', function (e) {
+        if (isOpen() && !widget.contains(e.target)) closePanel(false);
       });
     })();
   </script>
