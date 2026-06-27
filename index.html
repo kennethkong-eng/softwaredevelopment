@@ -687,6 +687,36 @@
     .site-footer a { color: #b9bec6; }
     .site-footer a:hover { color: #fff; }
     .site-footer .legal { font-family: var(--font-mono); font-size: 0.72rem; color: #7e858f; }
+    .footer-about { max-width: 24rem; }
+    .footer-about .logo { display: inline-block; margin-bottom: 0.6rem; }
+    .footer-about p { margin: 0; line-height: 1.6; }
+    .footer-social { display: flex; flex-direction: column; gap: 0.75rem; }
+    .footer-social .social-heading {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #7e858f;
+      margin: 0;
+    }
+    .social-links { display: flex; gap: 0.75rem; }
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+      color: #b9bec6;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+    .social-links a:hover {
+      color: #fff;
+      border-color: var(--paper);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .social-links svg { width: 1.15rem; height: 1.15rem; }
 
     /* ---------- Responsive ---------- */
     @media (min-width: 640px) {
@@ -1082,9 +1112,21 @@
   <!-- ============ Footer ============ -->
   <footer class="site-footer">
     <div class="container">
-      <a class="logo" href="#home"><span class="glyph">nb</span> Northbyte</a>
-      <p class="legal">&copy; <span id="year"></span> Northbyte Software · Built by hand, shipped on time.</p>
-      <p style="margin:0;"><a href="#contact">Start a project →</a></p>
+      <div class="footer-about">
+        <a class="logo" href="#home"><span class="glyph">nb</span> Northbyte</a>
+        <p>We're a small studio of senior engineers building custom software for ambitious teams — web apps, internal tools, and the systems that run behind them. Built by hand, shipped on time.</p>
+      </div>
+      <div class="footer-social">
+        <p class="social-heading">Follow us</p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/company/northbyte" target="_blank" rel="noopener noreferrer" aria-label="Northbyte on LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18.34V9.99H5.67v8.35h2.67zM7 8.82a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zm11.34 9.52v-4.58c0-2.45-1.31-3.59-3.06-3.59-1.41 0-2.04.78-2.39 1.32v-1.13h-2.67c.04.75 0 8.35 0 8.35h2.67v-4.66c0-.24.02-.48.09-.65.19-.48.63-.97 1.36-.97.96 0 1.34.73 1.34 1.8v4.48h2.66z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <p class="legal">&copy; <span id="year"></span> Northbyte Software · <a href="#contact">Start a project →</a></p>
     </div>
   </footer>
 
