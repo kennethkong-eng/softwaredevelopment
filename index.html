@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Northbyte — Custom Software That Scales</title>
+  <meta name="description" content="Northbyte builds custom software, web apps, APIs and cloud platforms that scale with your business. Get a quote today." />
+
+  <!-- Google Fonts (page degrades gracefully to the system stack if offline) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ---------- Design tokens ---------- */
+    :root {
+      --bg:        #0b1120;   /* deep slate page background */
+      --bg-alt:    #0f172a;   /* alternating section background */
+      --surface:   #1e293b;   /* cards, inputs */
+      --surface-2: #243043;   /* hover / raised surface */
+      --primary:   #38bdf8;   /* cyan accent */
+      --primary-600:#0ea5e9;
+      --accent:    #818cf8;   /* secondary indigo highlight */
+      --text:      #e2e8f0;   /* primary text */
+      --text-muted:#94a3b8;   /* secondary text */
+      --border:    #334155;   /* hairline borders */
+      --error:     #f87171;   /* validation red */
+      --success:   #34d399;   /* confirmation green */
+
+      --radius:    14px;
+      --radius-sm: 9px;
+      --shadow:    0 10px 30px -12px rgba(0, 0, 0, 0.6);
+      --shadow-lg: 0 22px 50px -18px rgba(14, 165, 233, 0.35);
+      --container: 1120px;
+
+      --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-head: 'Space Grotesk', var(--font-body);
+    }
+
+    /* ---------- Reset / base ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px; /* offset for the sticky navbar when anchoring */
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; letter-spacing: -0.02em; }
+
+    a { color: var(--primary); text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    /* Accessible-but-hidden helper text */
+    .visually-hidden {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0);
+      white-space: nowrap; border: 0;
+    }
+
+    /* Keyboard focus visibility across all interactive elements */
+    :focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font: inherit;
+      font-weight: 600;
+      padding: 0.85rem 1.6rem;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #06121f;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-block { width: 100%; }
+
+    /* ---------- Navbar ---------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 17, 32, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: 0.9rem;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo .dot { color: var(--primary); }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.4rem;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.3rem 0;
+      transition: color 0.15s ease;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ---------- Section scaffolding ---------- */
+    section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+    .section-alt { background: var(--bg-alt); }
+
+    .section-head { text-align: center; max-width: 620px; margin: 0 auto 3rem; }
+    .section-head h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin: 0 0 0.6rem; }
+    .section-head p { color: var(--text-muted); margin: 0; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      text-align: center;
+      background:
+        radial-gradient(900px 420px at 50% -10%, rgba(56, 189, 248, 0.18), transparent 60%),
+        radial-gradient(700px 380px at 85% 20%, rgba(129, 140, 248, 0.16), transparent 55%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+      overflow: hidden;
+    }
+    .hero::after { /* subtle grid texture */
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(700px 400px at 50% 20%, #000 30%, transparent 75%);
+      pointer-events: none;
+    }
+    .hero .container { position: relative; z-index: 1; }
+    .hero h1 {
+      font-size: clamp(2.3rem, 6vw, 4rem);
+      margin: 0 auto 1rem;
+      max-width: 18ch;
+    }
+    .hero .subhead {
+      font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+      color: var(--text);
+      font-weight: 500;
+      margin: 0 auto 1rem;
+      max-width: 40ch;
+    }
+    .hero .lead {
+      color: var(--text-muted);
+      max-width: 52ch;
+      margin: 0 auto 2rem;
+    }
+    .hero .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-meta {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem 2.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .hero-meta strong { color: var(--text); font-family: var(--font-head); font-size: 1.3rem; display: block; }
+
+    /* ---------- Testimonials ---------- */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;          /* mobile: single column */
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-600);
+    }
+    .card blockquote {
+      margin: 0 0 1.5rem;
+      font-size: 1.02rem;
+      color: var(--text);
+    }
+    .card blockquote::before { content: "\201C"; color: var(--primary); font-size: 2rem; line-height: 0; vertical-align: -0.4em; margin-right: 0.15rem; }
+    .client {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-top: auto;
+    }
+    .avatar {
+      flex: 0 0 auto;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: var(--font-head);
+      font-weight: 700;
+      color: #06121f;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+    }
+    .client .name { font-weight: 600; color: var(--text); }
+    .client .role { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* ---------- Form ---------- */
+    .form-wrap {
+      max-width: 680px;
+      margin-inline: auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      box-shadow: var(--shadow);
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    .field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .field label { font-weight: 600; font-size: 0.92rem; }
+    .field .optional { color: var(--text-muted); font-weight: 400; }
+
+    .field input,
+    .field select,
+    .field textarea {
+      font: inherit;
+      color: var(--text);
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 0.85rem;
+      width: 100%;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .field textarea { resize: vertical; min-height: 130px; }
+    .field input::placeholder,
+    .field textarea::placeholder { color: #64748b; }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+    }
+    /* Invalid state */
+    .field input[aria-invalid="true"],
+    .field select[aria-invalid="true"],
+    .field textarea[aria-invalid="true"] {
+      border-color: var(--error);
+      box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.18);
+    }
+
+    .error-msg {
+      color: var(--error);
+      font-size: 0.83rem;
+      min-height: 1em;       /* reserve space so layout doesn't jump */
+    }
+
+    /* Confirmation banner */
+    .form-success {
+      display: none;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(52, 211, 153, 0.12);
+      border: 1px solid var(--success);
+      color: var(--success);
+      border-radius: var(--radius-sm);
+      padding: 0.9rem 1.1rem;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+    .form-success.is-visible { display: flex; }
+
+    /* ---------- Footer ---------- */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding-block: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (min-width: 640px) {
+      .form-grid { grid-template-columns: 1fr 1fr; }
+      .field-full { grid-column: 1 / -1; }
+    }
+    @media (min-width: 992px) {
+      .cards { grid-template-columns: repeat(3, 1fr); }  /* desktop: 3 columns */
+    }
+
+    /* Respect reduced-motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ============ Navbar ============ -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="Primary">
+        <a class="logo" href="#home">North<span class="dot">byte</span></a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ 1. Hero ============ -->
+    <section class="hero" id="home">
+      <div class="container">
+        <span class="eyebrow">Custom Software Development</span>
+        <h1>We Build Software That <span class="gradient-text">Scales</span></h1>
+        <p class="subhead">From idea to production — engineered to grow with you.</p>
+        <p class="lead">
+          We design, build and ship reliable web apps, APIs and cloud platforms for
+          ambitious teams. Clean architecture, modern tooling, and a partner who sticks
+          around after launch.
+        </p>
+        <a href="#contact" class="btn btn-primary" id="hero-cta">Get a Quote</a>
+
+        <div class="hero-meta" aria-hidden="true">
+          <div><strong>120+</strong> Projects shipped</div>
+          <div><strong>14 yrs</strong> Avg. engineer experience</div>
+          <div><strong>99.9%</strong> Uptime delivered</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Services (anchor target for navbar) ============ -->
+    <section class="section-alt" id="services">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">What We Do</span>
+          <h2>End-to-end product engineering</h2>
+          <p>One team across the whole stack — so nothing falls through the cracks.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3 style="margin:0 0 .5rem;font-size:1.2rem;">Web &amp; SaaS Apps</h3>
+            <p style="margin:0;color:var(--text-muted);">Responsive, performant products built on modern frameworks and a maintainable codebase.</p>
+          </article>
+          <article class="card">
+            <h3 style="margin:0 0 .5rem;font-size:1.2rem;">APIs &amp; Backends</h3>
+            <p style="margin:0;color:var(--text-muted);">Secure, well-documented services and data pipelines that hold up under real load.</p>
+          </article>
+          <article class="card">
+            <h3 style="margin:0 0 .5rem;font-size:1.2rem;">Cloud &amp; DevOps</h3>
+            <p style="margin:0;color:var(--text-muted);">CI/CD, infrastructure-as-code and observability so you ship often and sleep at night.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. Testimonials ============ -->
+    <section id="testimonials">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Testimonials</span>
+          <h2>What Our Clients Say</h2>
+          <p>We measure success by the outcomes we help our clients reach.</p>
+        </div>
+
+        <div class="cards">
+          <figure class="card">
+            <blockquote>
+              Northbyte rebuilt our platform in four months and cut page loads in half.
+              They felt like an extension of our own team, not an agency.
+            </blockquote>
+            <figcaption class="client">
+              <span class="avatar" aria-hidden="true">AM</span>
+              <span>
+                <span class="name">Amara Mensah</span><br />
+                <span class="role">CTO, Loomly</span>
+              </span>
+            </figcaption>
+          </figure>
+
+          <figure class="card">
+            <blockquote>
+              Their API work is rock solid. We went from constant firefighting to a
+              stable system we actually trust in production.
+            </blockquote>
+            <figcaption class="client">
+              <span class="avatar" aria-hidden="true">DR</span>
+              <span>
+                <span class="name">Diego Ramirez</span><br />
+                <span class="role">Head of Engineering, FinPeak</span>
+              </span>
+            </figcaption>
+          </figure>
+
+          <figure class="card">
+            <blockquote>
+              Clear communication, realistic timelines, and code we could keep building
+              on. I'd hire them again in a heartbeat.
+            </blockquote>
+            <figcaption class="client">
+              <span class="avatar" aria-hidden="true">SK</span>
+              <span>
+                <span class="name">Sophie Klein</span><br />
+                <span class="role">Founder, Mapper.io</span>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. Enquiry Form ============ -->
+    <section class="section-alt" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Contact</span>
+          <h2>Get in Touch</h2>
+          <p>Tell us about your project and we'll get back to you within one business day.</p>
+        </div>
+
+        <div class="form-wrap">
+          <!-- Confirmation banner (revealed by JS on success) -->
+          <div class="form-success" id="form-success" role="status" aria-live="polite">
+            <span aria-hidden="true">✓</span>
+            <span>Thanks! We'll be in touch shortly.</span>
+          </div>
+
+          <form id="enquiry-form" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" autocomplete="name"
+                       placeholder="Jane Doe" required
+                       aria-describedby="name-error" />
+                <span class="error-msg" id="name-error" role="alert"></span>
+              </div>
+
+              <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" autocomplete="email"
+                       placeholder="jane@company.com" required
+                       aria-describedby="email-error" />
+                <span class="error-msg" id="email-error" role="alert"></span>
+              </div>
+
+              <div class="field">
+                <label for="phone">Phone <span class="optional">(optional)</span></label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel"
+                       placeholder="+1 555 123 4567"
+                       aria-describedby="phone-error" />
+                <span class="error-msg" id="phone-error" role="alert"></span>
+              </div>
+
+              <div class="field">
+                <label for="service">Service interested in</label>
+                <select id="service" name="service">
+                  <option value="Web App">Web App</option>
+                  <option value="Mobile App">Mobile App</option>
+                  <option value="API / Backend">API / Backend</option>
+                  <option value="Cloud / DevOps">Cloud / DevOps</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="field field-full">
+                <label for="message">Message</label>
+                <textarea id="message" name="message"
+                          placeholder="Tell us a bit about what you're building..."
+                          required aria-describedby="message-error"></textarea>
+                <span class="error-msg" id="message-error" role="alert"></span>
+              </div>
+
+              <div class="field field-full">
+                <button type="submit" class="btn btn-primary btn-block">Send Enquiry</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Northbyte Software. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // Keep the footer year current.
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // --- "Get a Quote" CTA: smooth scroll is handled in CSS; here we add
+      //     focus management so keyboard users land on the first field. ---
+      var heroCta = document.getElementById('hero-cta');
+      heroCta.addEventListener('click', function () {
+        // Defer focus until after the smooth scroll begins.
+        window.setTimeout(function () {
+          document.getElementById('name').focus();
+        }, 600);
+      });
+
+      // --- Enquiry form: validation + submission ---
+      var form    = document.getElementById('enquiry-form');
+      var success = document.getElementById('form-success');
+
+      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Field id -> validation rule. `optional` fields only validate when filled.
+      var FIELDS = [
+        { id: 'name',    required: true,  message: 'Please enter your name.' },
+        { id: 'email',   required: true,  message: 'Please enter your email.',
+          pattern: EMAIL_RE, patternMessage: 'Please enter a valid email address.' },
+        { id: 'message', required: true,  message: 'Please enter a message.' }
+      ];
+
+      function setError(id, msg) {
+        var input = document.getElementById(id);
+        var box   = document.getElementById(id + '-error');
+        box.textContent = msg;
+        input.setAttribute('aria-invalid', 'true');
+      }
+
+      function clearError(id) {
+        var input = document.getElementById(id);
+        var box   = document.getElementById(id + '-error');
+        box.textContent = '';
+        input.removeAttribute('aria-invalid');
+      }
+
+      function validate() {
+        var firstInvalid = null;
+
+        FIELDS.forEach(function (rule) {
+          var value = document.getElementById(rule.id).value.trim();
+          clearError(rule.id);
+
+          if (rule.required && value === '') {
+            setError(rule.id, rule.message);
+            if (!firstInvalid) firstInvalid = rule.id;
+          } else if (rule.pattern && value !== '' && !rule.pattern.test(value)) {
+            setError(rule.id, rule.patternMessage);
+            if (!firstInvalid) firstInvalid = rule.id;
+          }
+        });
+
+        return firstInvalid; // null if everything passed
+      }
+
+      // Clear a field's error as soon as the user starts correcting it.
+      FIELDS.forEach(function (rule) {
+        document.getElementById(rule.id).addEventListener('input', function () {
+          clearError(rule.id);
+        });
+      });
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        success.classList.remove('is-visible');
+
+        var firstInvalid = validate();
+        if (firstInvalid) {
+          document.getElementById(firstInvalid).focus();
+          return;
+        }
+
+        // Collect the form data into a plain object.
+        var formData = {
+          name:    document.getElementById('name').value.trim(),
+          email:   document.getElementById('email').value.trim(),
+          phone:   document.getElementById('phone').value.trim(),
+          service: document.getElementById('service').value,
+          message: document.getElementById('message').value.trim()
+        };
+
+        // Placeholder for a real backend call — log to the console for now.
+        console.log('Enquiry submitted:', formData);
+
+        /*
+        // --- Example: POST the enquiry to a real API endpoint ---
+        fetch('https://api.northbyte.example/enquiries', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        })
+          .then(function (response) {
+            if (!response.ok) throw new Error('Request failed: ' + response.status);
+            return response.json();
+          })
+          .then(function (data) {
+            console.log('Server response:', data);
+          })
+          .catch(function (error) {
+            console.error('Submission error:', error);
+          });
+        */
+
+        // Show confirmation, reset the form, and move focus to the banner.
+        success.classList.add('is-visible');
+        form.reset();
+        success.setAttribute('tabindex', '-1');
+        success.focus();
+      });
+    })();
+  </script>
+</body>
+</html>
