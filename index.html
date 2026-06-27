@@ -3,38 +3,101 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Northbyte — Custom Software That Scales</title>
-  <meta name="description" content="Northbyte builds custom software, web apps, APIs and cloud platforms that scale with your business. Get a quote today." />
+  <title>Northbyte — Custom Software Development Studio</title>
+  <meta name="description" content="Northbyte is a senior software development studio. We design, build and ship custom web apps, APIs and cloud platforms — then stay on after launch." />
+  <meta name="keywords" content="custom software development, software build studio, web app development, API development, cloud DevOps, SaaS development" />
+  <meta name="author" content="Northbyte Software" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#181b20" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://kennethkong-eng.github.io/softwaredevelopment/" />
+
+  <!-- Open Graph (Facebook, LinkedIn, Slack, AI search previews) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Northbyte" />
+  <meta property="og:title" content="Northbyte — Custom Software Development Studio" />
+  <meta property="og:description" content="A senior software development studio that designs, builds and ships custom web apps, APIs and cloud platforms — and stays on after launch." />
+  <meta property="og:url" content="https://kennethkong-eng.github.io/softwaredevelopment/" />
+  <meta property="og:image" content="https://kennethkong-eng.github.io/softwaredevelopment/desktop-full.png" />
+  <meta property="og:image:alt" content="Northbyte landing page — custom software development studio" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Northbyte — Custom Software Development Studio" />
+  <meta name="twitter:description" content="A senior software development studio that designs, builds and ships custom web apps, APIs and cloud platforms — and stays on after launch." />
+  <meta name="twitter:image" content="https://kennethkong-eng.github.io/softwaredevelopment/desktop-full.png" />
+
+  <!-- Inline SVG favicon (keeps the build dependency-free) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23181b20'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='15' font-weight='700' fill='%231b43f0' text-anchor='middle'%3Enb%3C/text%3E%3C/svg%3E" />
+
+  <!-- Structured data: who we are + what we offer (helps rich results & AI search) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://kennethkong-eng.github.io/softwaredevelopment/#org",
+        "name": "Northbyte",
+        "alternateName": "Northbyte Software",
+        "description": "A senior software development studio that designs, builds and ships custom web apps, APIs and cloud platforms.",
+        "url": "https://kennethkong-eng.github.io/softwaredevelopment/",
+        "email": "hello@northbyte.dev",
+        "foundingDate": "2011",
+        "areaServed": "Worldwide",
+        "knowsAbout": ["Custom software development", "Web application development", "API development", "Cloud infrastructure", "DevOps"],
+        "makesOffer": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web & SaaS apps", "description": "Customer-facing products and internal tools your team can read, run and own." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "APIs & data platforms", "description": "Services, integrations and pipelines that stay fast and observable under real traffic." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cloud & DevOps", "description": "CI/CD, infrastructure-as-code and the monitoring that lets you ship with confidence." } }
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://kennethkong-eng.github.io/softwaredevelopment/#website",
+        "url": "https://kennethkong-eng.github.io/softwaredevelopment/",
+        "name": "Northbyte",
+        "publisher": { "@id": "https://kennethkong-eng.github.io/softwaredevelopment/#org" }
+      }
+    ]
+  }
+  </script>
 
   <!-- Google Fonts (page degrades gracefully to the system stack if offline) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ---------- Design tokens ---------- */
+    /* ---------- Design tokens ----------
+       Direction: an engineering datasheet on drafting paper.
+       One electric "signal" blue is the only accent; monospace is treated
+       as a real material (code), not decoration. */
     :root {
-      --bg:        #0b1120;   /* deep slate page background */
-      --bg-alt:    #0f172a;   /* alternating section background */
-      --surface:   #1e293b;   /* cards, inputs */
-      --surface-2: #243043;   /* hover / raised surface */
-      --primary:   #38bdf8;   /* cyan accent */
-      --primary-600:#0ea5e9;
-      --accent:    #818cf8;   /* secondary indigo highlight */
-      --text:      #e2e8f0;   /* primary text */
-      --text-muted:#94a3b8;   /* secondary text */
-      --border:    #334155;   /* hairline borders */
-      --error:     #f87171;   /* validation red */
-      --success:   #34d399;   /* confirmation green */
+      --paper:    #e8e9e3;   /* cool putty drafting paper (page) */
+      --paper-2:  #f1f2ec;   /* raised surfaces: cards, inputs */
+      --ink:      #181b20;   /* primary text + dark terminal panel */
+      --ink-soft: #20242b;   /* terminal inner panel */
+      --graphite: #565c66;   /* secondary text */
+      --line:     #c4c7c0;   /* hairline drafting rules / borders */
+      --line-2:   #d4d6cf;   /* lighter rule */
+      --signal:   #1b43f0;   /* electric blueprint blue — the one accent */
+      --signal-700:#1535c4;
+      --signal-wash: rgba(27, 67, 240, 0.08);
+      --pass:     #46d17f;   /* CI "pass" green — terminal only */
+      --error:    #d23b3b;   /* validation red */
+      --error-wash: rgba(210, 59, 59, 0.10);
 
-      --radius:    14px;
-      --radius-sm: 9px;
-      --shadow:    0 10px 30px -12px rgba(0, 0, 0, 0.6);
-      --shadow-lg: 0 22px 50px -18px rgba(14, 165, 233, 0.35);
-      --container: 1120px;
+      --radius:    4px;       /* drafting-square corners, barely rounded */
+      --radius-sm: 3px;
+      --shadow:    0 1px 0 var(--line-2), 0 18px 40px -28px rgba(24, 27, 32, 0.45);
+      --container: 1140px;
 
       --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      --font-head: 'Space Grotesk', var(--font-body);
+      --font-head: 'Archivo', var(--font-body);
+      --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', 'Menlo', 'Consolas', monospace;
     }
 
     /* ---------- Reset / base ---------- */
@@ -42,33 +105,37 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 80px; /* offset for the sticky navbar when anchoring */
+      scroll-padding-top: 92px; /* clear the sticky header on anchor jumps */
     }
 
     body {
       margin: 0;
       font-family: var(--font-body);
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
 
-    h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; letter-spacing: -0.02em; }
+    h1, h2, h3 {
+      font-family: var(--font-head);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      font-weight: 800;
+      margin: 0;
+    }
 
-    a { color: var(--primary); text-decoration: none; }
-
+    a { color: var(--signal); text-decoration: none; }
     img { max-width: 100%; display: block; }
 
     .container {
       width: 100%;
       max-width: var(--container);
       margin-inline: auto;
-      padding-inline: 20px;
+      padding-inline: 24px;
     }
 
-    /* Accessible-but-hidden helper text */
     .visually-hidden {
       position: absolute;
       width: 1px; height: 1px;
@@ -79,307 +146,575 @@
 
     /* Keyboard focus visibility across all interactive elements */
     :focus-visible {
-      outline: 3px solid var(--primary);
+      outline: 2px solid var(--signal);
       outline-offset: 2px;
-      border-radius: 4px;
+      border-radius: 2px;
     }
+
+    /* ---------- Mono label / eyebrow (the datasheet voice) ---------- */
+    .mono {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-bottom: 1rem;
+    }
+    .eyebrow::before { content: "// "; color: var(--graphite); }
 
     /* ---------- Buttons ---------- */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      font: inherit;
-      font-weight: 600;
-      padding: 0.85rem 1.6rem;
-      border: 1px solid transparent;
+      gap: 0.55rem;
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 0.85rem 1.5rem;
+      border: 1px solid var(--ink);
       border-radius: var(--radius-sm);
       cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+      background: none;
+      color: var(--ink);
+      transition: transform 0.12s ease, box-shadow 0.18s ease, background 0.15s ease, color 0.15s ease;
     }
     .btn-primary {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      color: #06121f;
+      background: var(--signal);
+      border-color: var(--signal);
+      color: #fff;
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .btn-primary:hover {
+      background: var(--signal-700);
+      border-color: var(--signal-700);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px -14px rgba(27, 67, 240, 0.6);
+    }
     .btn-primary:active { transform: translateY(0); }
-
+    .btn-ghost:hover { background: var(--ink); color: var(--paper); transform: translateY(-2px); }
     .btn-block { width: 100%; }
+    .btn .arrow { font-family: var(--font-mono); }
 
-    /* ---------- Navbar ---------- */
+    /* ---------- Datasheet top strip ---------- */
+    .topbar {
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-block: 0.5rem;
+    }
+    .topbar .status { display: inline-flex; align-items: center; gap: 0.5rem; color: #cdd2d8; }
+    .topbar .led {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--pass);
+      box-shadow: 0 0 0 0 rgba(70, 209, 127, 0.7);
+      animation: pulse 2.4s ease-out infinite;
+    }
+    .topbar .meta { color: #8b929c; }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(70, 209, 127, 0.55); }
+      70%  { box-shadow: 0 0 0 7px rgba(70, 209, 127, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(70, 209, 127, 0); }
+    }
+
+    /* ---------- Header / nav ---------- */
     .site-header {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(11, 17, 32, 0.82);
+      background: rgba(232, 233, 227, 0.86);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--line);
     }
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      padding-block: 0.9rem;
+      padding-block: 0.85rem;
       flex-wrap: wrap;
     }
     .logo {
       font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: var(--text);
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--ink);
       letter-spacing: -0.03em;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.55rem;
     }
-    .logo .dot { color: var(--primary); }
+    .logo .glyph {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--signal);
+      border: 1.5px solid var(--signal);
+      border-radius: 3px;
+      padding: 0.05rem 0.32rem;
+      font-size: 0.9rem;
+      line-height: 1.2;
+    }
     .nav-links {
       list-style: none;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem 1.4rem;
+      gap: 0.4rem 1.6rem;
       margin: 0;
       padding: 0;
     }
     .nav-links a {
-      color: var(--text-muted);
+      color: var(--graphite);
+      font-family: var(--font-mono);
       font-weight: 500;
-      font-size: 0.95rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
       padding: 0.3rem 0;
       transition: color 0.15s ease;
     }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover { color: var(--ink); }
+    .nav .btn { padding: 0.55rem 1.05rem; }
 
     /* ---------- Section scaffolding ---------- */
-    section { padding-block: clamp(3.5rem, 8vw, 6rem); }
-    .section-alt { background: var(--bg-alt); }
+    .section { padding-block: clamp(4rem, 9vw, 7rem); }
+    .section + .section { border-top: 1px solid var(--line); }
 
-    .section-head { text-align: center; max-width: 620px; margin: 0 auto 3rem; }
-    .section-head h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin: 0 0 0.6rem; }
-    .section-head p { color: var(--text-muted); margin: 0; }
-
-    .eyebrow {
-      display: inline-block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--primary);
-      margin-bottom: 0.75rem;
-    }
+    .section-head { max-width: 640px; margin-bottom: 3rem; }
+    .section-head.center { margin-inline: auto; text-align: center; }
+    .section-head h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); margin-bottom: 0.7rem; }
+    .section-head p { color: var(--graphite); margin: 0; font-size: 1.02rem; }
 
     /* ---------- Hero ---------- */
     .hero {
       position: relative;
-      text-align: center;
-      background:
-        radial-gradient(900px 420px at 50% -10%, rgba(56, 189, 248, 0.18), transparent 60%),
-        radial-gradient(700px 380px at 85% 20%, rgba(129, 140, 248, 0.16), transparent 55%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
       overflow: hidden;
+      padding-block: clamp(3.5rem, 8vw, 6rem);
+      background:
+        linear-gradient(var(--line-2) 1px, transparent 1px) 0 0 / 100% 32px,
+        linear-gradient(90deg, var(--line-2) 1px, transparent 1px) 0 0 / 32px 100%;
     }
-    .hero::after { /* subtle grid texture */
+    .hero::after { /* fade the blueprint grid out toward the page */
       content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
-      background-size: 44px 44px;
-      mask-image: radial-gradient(700px 400px at 50% 20%, #000 30%, transparent 75%);
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(232,233,227,0) 30%, var(--paper) 92%);
       pointer-events: none;
     }
     .hero .container { position: relative; z-index: 1; }
-    .hero h1 {
-      font-size: clamp(2.3rem, 6vw, 4rem);
-      margin: 0 auto 1rem;
-      max-width: 18ch;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2.5rem, 5vw, 4rem);
+      align-items: center;
     }
-    .hero .subhead {
-      font-size: clamp(1.05rem, 2.4vw, 1.3rem);
-      color: var(--text);
-      font-weight: 500;
-      margin: 0 auto 1rem;
-      max-width: 40ch;
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.1rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      max-width: 16ch;
+    }
+    .hero h1 .mark {
+      color: var(--signal);
+      box-shadow: inset 0 -0.14em 0 var(--signal-wash);
     }
     .hero .lead {
-      color: var(--text-muted);
-      max-width: 52ch;
-      margin: 0 auto 2rem;
+      color: var(--graphite);
+      font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+      max-width: 46ch;
+      margin-bottom: 2rem;
     }
-    .hero .gradient-text {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .hero-meta {
-      margin-top: 2.5rem;
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.85rem; }
+    .trust {
+      margin-top: 2.25rem;
+      color: var(--graphite);
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem 2.5rem;
-      color: var(--text-muted);
-      font-size: 0.9rem;
+      align-items: center;
+      gap: 0.5rem 0.85rem;
     }
-    .hero-meta strong { color: var(--text); font-family: var(--font-head); font-size: 1.3rem; display: block; }
+    .trust .sep { color: var(--line); }
+    .trust strong { color: var(--ink); font-weight: 600; }
 
-    /* ---------- Testimonials ---------- */
-    .cards {
-      display: grid;
-      grid-template-columns: 1fr;          /* mobile: single column */
-      gap: 1.5rem;
-    }
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+    /* ---------- Hero terminal: the signature element ---------- */
+    .terminal {
+      background: var(--ink);
       border-radius: var(--radius);
-      padding: 1.75rem;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-      display: flex;
-      flex-direction: column;
+      border: 1px solid #2b2f37;
+      box-shadow: 0 30px 60px -30px rgba(24, 27, 32, 0.7);
+      overflow: hidden;
+      font-family: var(--font-mono);
     }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--primary-600);
-    }
-    .card blockquote {
-      margin: 0 0 1.5rem;
-      font-size: 1.02rem;
-      color: var(--text);
-    }
-    .card blockquote::before { content: "\201C"; color: var(--primary); font-size: 2rem; line-height: 0; vertical-align: -0.4em; margin-right: 0.15rem; }
-    .client {
+    .terminal-bar {
       display: flex;
       align-items: center;
-      gap: 0.9rem;
-      margin-top: auto;
+      gap: 0.55rem;
+      padding: 0.7rem 0.95rem;
+      background: var(--ink-soft);
+      border-bottom: 1px solid #2b2f37;
     }
-    .avatar {
-      flex: 0 0 auto;
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
+    .terminal-bar .dot { width: 11px; height: 11px; border-radius: 50%; background: #3a3f48; }
+    .terminal-bar .title {
+      margin-left: 0.5rem;
+      color: #7e858f;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+    }
+    .terminal-body {
+      padding: 1.15rem 1.25rem 1.4rem;
+      font-size: 0.83rem;
+      line-height: 1.85;
+      color: #d7dbe0;
+      white-space: pre-wrap;
+      min-height: 248px;
+    }
+    .t-line { display: block; }
+    .terminal-body.anim .t-line { opacity: 0; transform: translateY(2px); }
+    .terminal-body.anim .t-line.is-in {
+      opacity: 1; transform: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .t-dim   { color: #6f7782; }
+    .t-flag  { color: #9aa6ff; }
+    .t-arrow { color: #6f7782; }
+    .t-ok    { color: var(--pass); }
+    .t-pass  { color: var(--pass); font-weight: 700; }
+    .t-url   { color: #7fb4ff; }
+    .t-cursor {
+      display: inline-block;
+      width: 0.55rem; height: 1.05em;
+      background: var(--pass);
+      vertical-align: -0.18em;
+      animation: blink 1.05s steps(1) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ---------- Spec row (proof, as datasheet fields not big-number gradient) ---------- */
+    .specs {
       display: grid;
-      place-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: clamp(3rem, 6vw, 4rem);
+    }
+    .spec {
+      background: var(--paper);
+      padding: 1.4rem 1.5rem;
+    }
+    .spec .k {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--graphite);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .spec .v {
       font-family: var(--font-head);
       font-weight: 700;
-      color: #06121f;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+      font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+      letter-spacing: -0.02em;
     }
-    .client .name { font-weight: 600; color: var(--text); }
-    .client .role { font-size: 0.85rem; color: var(--text-muted); }
 
-    /* ---------- Form ---------- */
-    .form-wrap {
-      max-width: 680px;
-      margin-inline: auto;
-      background: var(--surface);
-      border: 1px solid var(--border);
+    /* ---------- Corner-tick measurement motif (reused) ---------- */
+    .ticked { position: relative; }
+    .ticked::before, .ticked::after {
+      content: "";
+      position: absolute;
+      width: 10px; height: 10px;
+      border-color: var(--signal);
+      border-style: solid;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+    .ticked::before { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
+    .ticked::after  { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+
+    /* ---------- Build cards (services) ---------- */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    .card {
+      background: var(--paper-2);
+      border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: clamp(1.5rem, 4vw, 2.5rem);
+      padding: 1.9rem 1.7rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+      border-color: var(--graphite);
+    }
+    .card .tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--signal);
+    }
+    .card h3 { font-size: 1.25rem; margin: 0.7rem 0 0.6rem; font-weight: 700; }
+    .card p { margin: 0; color: var(--graphite); }
+    .card .stack { margin-top: 1.1rem; color: var(--graphite); }
+    .card .stack span {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.12rem 0.55rem;
+      margin: 0.25rem 0.3rem 0 0;
+    }
+
+    /* ---------- Process: a real numbered sequence ---------- */
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--paper-2);
+    }
+    .step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.25rem;
+      padding: 1.6rem 1.7rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .step:last-child { border-bottom: 0; }
+    .step .num {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--signal);
+      padding-top: 0.15rem;
+    }
+    .step h3 { font-size: 1.15rem; margin-bottom: 0.35rem; font-weight: 700; }
+    .step p { margin: 0; color: var(--graphite); max-width: 60ch; }
+    .step .dur {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--graphite);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 0.5rem;
+      display: inline-block;
+    }
+
+    /* ---------- Testimonials ---------- */
+    .quotes { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    .quote {
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.9rem 1.7rem;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+    }
+    .quote blockquote {
+      margin: 0 0 1.5rem;
+      font-size: 1.04rem;
+      line-height: 1.55;
+    }
+    .quote .qmark {
+      font-family: var(--font-mono);
+      color: var(--signal);
+      font-size: 0.8rem;
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+    .client { display: flex; align-items: center; gap: 0.85rem; margin-top: auto; }
+    .avatar {
+      flex: 0 0 auto;
+      width: 42px; height: 42px;
+      border-radius: 3px;
+      display: grid; place-items: center;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--paper);
+      background: var(--ink);
+    }
+    .client .name { font-weight: 600; }
+    .client .role { font-family: var(--font-mono); font-size: 0.72rem; color: var(--graphite); }
+
+    /* ---------- Contact / form ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 4vw, 3rem);
+      align-items: start;
+    }
+    .contact-aside p { color: var(--graphite); }
+    .contact-aside .channel {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      border-top: 1px solid var(--line);
+      padding-block: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .contact-aside .channel:last-child { border-bottom: 1px solid var(--line); }
+    .contact-aside .channel .k { color: var(--graphite); }
+
+    .form-wrap {
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(1.5rem, 4vw, 2.4rem);
       box-shadow: var(--shadow);
     }
-    .form-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
     .field { display: flex; flex-direction: column; gap: 0.4rem; }
-    .field label { font-weight: 600; font-size: 0.92rem; }
-    .field .optional { color: var(--text-muted); font-weight: 400; }
+    .field label {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 0.74rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--graphite);
+    }
+    .field .optional { text-transform: none; letter-spacing: 0; }
 
     .field input,
     .field select,
     .field textarea {
       font: inherit;
-      color: var(--text);
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid var(--line);
       border-radius: var(--radius-sm);
-      padding: 0.75rem 0.85rem;
+      padding: 0.72rem 0.8rem;
       width: 100%;
       transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
     .field textarea { resize: vertical; min-height: 130px; }
     .field input::placeholder,
-    .field textarea::placeholder { color: #64748b; }
+    .field textarea::placeholder { color: #9aa0a8; }
 
     .field input:focus,
     .field select:focus,
     .field textarea:focus {
       outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+      border-color: var(--signal);
+      box-shadow: 0 0 0 3px var(--signal-wash);
     }
-    /* Invalid state */
     .field input[aria-invalid="true"],
     .field select[aria-invalid="true"],
     .field textarea[aria-invalid="true"] {
       border-color: var(--error);
-      box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.18);
+      box-shadow: 0 0 0 3px var(--error-wash);
     }
 
     .error-msg {
       color: var(--error);
-      font-size: 0.83rem;
-      min-height: 1em;       /* reserve space so layout doesn't jump */
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      min-height: 1em; /* reserve space so layout doesn't jump */
     }
 
-    /* Confirmation banner */
     .form-success {
       display: none;
       align-items: center;
       gap: 0.6rem;
-      background: rgba(52, 211, 153, 0.12);
-      border: 1px solid var(--success);
-      color: var(--success);
+      background: rgba(70, 209, 127, 0.12);
+      border: 1px solid var(--pass);
+      color: #1c7c4a;
       border-radius: var(--radius-sm);
       padding: 0.9rem 1.1rem;
-      margin-bottom: 1.5rem;
-      font-weight: 500;
+      margin-bottom: 1.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
     }
     .form-success.is-visible { display: flex; }
 
     /* ---------- Footer ---------- */
     .site-footer {
-      border-top: 1px solid var(--border);
-      padding-block: 2rem;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
+      background: var(--ink);
+      color: #b9bec6;
+      padding-block: 2.5rem;
+      font-size: 0.85rem;
     }
+    .site-footer .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .site-footer .logo { color: var(--paper); }
+    .site-footer a { color: #b9bec6; }
+    .site-footer a:hover { color: #fff; }
+    .site-footer .legal { font-family: var(--font-mono); font-size: 0.72rem; color: #7e858f; }
 
     /* ---------- Responsive ---------- */
     @media (min-width: 640px) {
       .form-grid { grid-template-columns: 1fr 1fr; }
       .field-full { grid-column: 1 / -1; }
+      .specs { grid-template-columns: repeat(4, 1fr); }
+      .step { grid-template-columns: auto 1fr; }
     }
     @media (min-width: 992px) {
-      .cards { grid-template-columns: repeat(3, 1fr); }  /* desktop: 3 columns */
+      .hero-grid { grid-template-columns: 1.05fr 0.95fr; }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .quotes { grid-template-columns: repeat(3, 1fr); }
+      .contact-grid { grid-template-columns: 0.8fr 1.2fr; }
     }
 
     /* Respect reduced-motion preferences */
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      * { transition: none !important; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .terminal-body.anim .t-line { opacity: 1; transform: none; }
     }
   </style>
 </head>
 
 <body>
+  <!-- ============ Datasheet top strip ============ -->
+  <div class="topbar" aria-hidden="true">
+    <div class="container">
+      <span>Northbyte · Software Build Studio</span>
+      <span class="status"><span class="led"></span> All systems operational</span>
+      <span class="meta">Est. 2011 · Remote-first</span>
+    </div>
+  </div>
+
   <!-- ============ Navbar ============ -->
   <header class="site-header">
     <div class="container">
       <nav class="nav" aria-label="Primary">
-        <a class="logo" href="#home">North<span class="dot">byte</span></a>
+        <a class="logo" href="#home"><span class="glyph">nb</span> Northbyte</a>
         <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#testimonials">Clients</a></li>
         </ul>
+        <a href="#contact" class="btn btn-primary">Start a project</a>
       </nav>
     </div>
   </header>
@@ -388,60 +723,140 @@
     <!-- ============ 1. Hero ============ -->
     <section class="hero" id="home">
       <div class="container">
-        <span class="eyebrow">Custom Software Development</span>
-        <h1>We Build Software That <span class="gradient-text">Scales</span></h1>
-        <p class="subhead">From idea to production — engineered to grow with you.</p>
-        <p class="lead">
-          We design, build and ship reliable web apps, APIs and cloud platforms for
-          ambitious teams. Clean architecture, modern tooling, and a partner who sticks
-          around after launch.
-        </p>
-        <a href="#contact" class="btn btn-primary" id="hero-cta">Get a Quote</a>
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">Custom software development</span>
+            <h1>We turn your roadmap into <span class="mark">running software</span>.</h1>
+            <p class="lead">
+              Northbyte is a senior engineering studio. We design, build and ship the
+              web apps, APIs and platforms your team doesn't have the bandwidth to —
+              and we stay on after launch.
+            </p>
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary" id="hero-cta">Start a project <span class="arrow">→</span></a>
+              <a href="#process" class="btn btn-ghost">See how we work</a>
+            </div>
+            <p class="trust mono">
+              <span>Trusted by teams at</span>
+              <strong>Loomly</strong><span class="sep">·</span>
+              <strong>FinPeak</strong><span class="sep">·</span>
+              <strong>Mapper.io</strong>
+            </p>
+          </div>
 
-        <div class="hero-meta" aria-hidden="true">
-          <div><strong>120+</strong> Projects shipped</div>
-          <div><strong>14 yrs</strong> Avg. engineer experience</div>
-          <div><strong>99.9%</strong> Uptime delivered</div>
+          <!-- Signature: a CI build log that types out a real deploy. Decorative;
+               the value proposition is carried by the headline text above. -->
+          <div class="terminal" aria-hidden="true">
+            <div class="terminal-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="title">northbyte@ship — deploy.log</span>
+            </div>
+            <div class="terminal-body" id="build-log"></div>
+          </div>
+        </div>
+
+        <!-- Proof, kept as quiet datasheet fields rather than gradient hero stats -->
+        <div class="specs">
+          <div class="spec"><span class="k">Projects shipped</span><span class="v">120+</span></div>
+          <div class="spec"><span class="k">Avg. engineer</span><span class="v">14 yrs</span></div>
+          <div class="spec"><span class="k">Uptime delivered</span><span class="v">99.9%</span></div>
+          <div class="spec"><span class="k">Client NPS</span><span class="v">72</span></div>
         </div>
       </div>
     </section>
 
-    <!-- ============ Services (anchor target for navbar) ============ -->
-    <section class="section-alt" id="services">
+    <!-- ============ 2. Services ============ -->
+    <section class="section" id="services">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">What We Do</span>
-          <h2>End-to-end product engineering</h2>
-          <p>One team across the whole stack — so nothing falls through the cracks.</p>
+          <span class="eyebrow">What we build</span>
+          <h2>One team across the whole stack</h2>
+          <p>So nothing falls through the gap between front end, back end and the deploy that ties them together.</p>
         </div>
-        <div class="cards">
-          <article class="card">
-            <h3 style="margin:0 0 .5rem;font-size:1.2rem;">Web &amp; SaaS Apps</h3>
-            <p style="margin:0;color:var(--text-muted);">Responsive, performant products built on modern frameworks and a maintainable codebase.</p>
+
+        <div class="grid-3">
+          <article class="card ticked">
+            <span class="tag">[ 01 ] product</span>
+            <h3>Web &amp; SaaS apps</h3>
+            <p>Customer-facing products and internal tools, built on a codebase your own team can read, run and own.</p>
+            <p class="stack"><span>React</span><span>TypeScript</span><span>Next.js</span><span>Postgres</span></p>
           </article>
-          <article class="card">
-            <h3 style="margin:0 0 .5rem;font-size:1.2rem;">APIs &amp; Backends</h3>
-            <p style="margin:0;color:var(--text-muted);">Secure, well-documented services and data pipelines that hold up under real load.</p>
+
+          <article class="card ticked">
+            <span class="tag">[ 02 ] platform</span>
+            <h3>APIs &amp; data platforms</h3>
+            <p>Services, integrations and pipelines that stay fast and observable when real traffic shows up.</p>
+            <p class="stack"><span>Go</span><span>Python</span><span>gRPC</span><span>Kafka</span></p>
           </article>
-          <article class="card">
-            <h3 style="margin:0 0 .5rem;font-size:1.2rem;">Cloud &amp; DevOps</h3>
-            <p style="margin:0;color:var(--text-muted);">CI/CD, infrastructure-as-code and observability so you ship often and sleep at night.</p>
+
+          <article class="card ticked">
+            <span class="tag">[ 03 ] reliability</span>
+            <h3>Cloud &amp; DevOps</h3>
+            <p>CI/CD, infrastructure-as-code and the monitoring that lets you ship on a Friday and sleep that night.</p>
+            <p class="stack"><span>AWS</span><span>Terraform</span><span>Kubernetes</span><span>Grafana</span></p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ============ 2. Testimonials ============ -->
-    <section id="testimonials">
+    <!-- ============ 3. Process (a genuine sequence → numbering earns its place) ============ -->
+    <section class="section" id="process">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Testimonials</span>
-          <h2>What Our Clients Say</h2>
-          <p>We measure success by the outcomes we help our clients reach.</p>
+          <span class="eyebrow">How we work</span>
+          <h2>From first call to on-call</h2>
+          <p>A fixed, predictable path. You always know what's happening this week and what ships next.</p>
         </div>
 
-        <div class="cards">
-          <figure class="card">
+        <div class="steps">
+          <div class="step">
+            <span class="num">01</span>
+            <div>
+              <h3>Scope</h3>
+              <p>A week of discovery. We map the work, the risks and a fixed milestone plan — before anyone writes production code.</p>
+              <span class="dur">≈ 1 week</span>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">02</span>
+            <div>
+              <h3>Build</h3>
+              <p>Two-week sprints, each ending in working software you can click through in staging. Progress you can see, not slides.</p>
+              <span class="dur">2-week sprints</span>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">03</span>
+            <div>
+              <h3>Ship</h3>
+              <p>Production deploys with tests, monitoring and a rollback path in place from day one — not bolted on at the end.</p>
+              <span class="dur">Continuous</span>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">04</span>
+            <div>
+              <h3>Support</h3>
+              <p>We stay on after launch: a clear SLA, on-call cover and a roadmap for whatever the product needs next.</p>
+              <span class="dur">Ongoing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. Testimonials ============ -->
+    <section class="section" id="testimonials">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow">Clients</span>
+          <h2>What teams say after launch</h2>
+          <p>We measure the work by the outcomes it leaves behind.</p>
+        </div>
+
+        <div class="quotes">
+          <figure class="quote">
+            <span class="qmark">"</span>
             <blockquote>
               Northbyte rebuilt our platform in four months and cut page loads in half.
               They felt like an extension of our own team, not an agency.
@@ -455,7 +870,8 @@
             </figcaption>
           </figure>
 
-          <figure class="card">
+          <figure class="quote">
+            <span class="qmark">"</span>
             <blockquote>
               Their API work is rock solid. We went from constant firefighting to a
               stable system we actually trust in production.
@@ -469,9 +885,10 @@
             </figcaption>
           </figure>
 
-          <figure class="card">
+          <figure class="quote">
+            <span class="qmark">"</span>
             <blockquote>
-              Clear communication, realistic timelines, and code we could keep building
+              Clear communication, realistic timelines and code we could keep building
               on. I'd hire them again in a heartbeat.
             </blockquote>
             <figcaption class="client">
@@ -486,72 +903,77 @@
       </div>
     </section>
 
-    <!-- ============ 3. Enquiry Form ============ -->
-    <section class="section-alt" id="contact">
+    <!-- ============ 5. Enquiry Form ============ -->
+    <section class="section" id="contact">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Contact</span>
-          <h2>Get in Touch</h2>
-          <p>Tell us about your project and we'll get back to you within one business day.</p>
-        </div>
-
-        <div class="form-wrap">
-          <!-- Confirmation banner (revealed by JS on success) -->
-          <div class="form-success" id="form-success" role="status" aria-live="polite">
-            <span aria-hidden="true">✓</span>
-            <span>Thanks! We'll be in touch shortly.</span>
+        <div class="contact-grid">
+          <div class="contact-aside">
+            <span class="eyebrow">Start a project</span>
+            <h2 style="font-size:clamp(1.7rem,4vw,2.5rem);margin-bottom:0.7rem;">Tell us what you're building</h2>
+            <p>Send the shape of the work and we'll reply within one business day — usually with a few sharp questions and a sense of timeline.</p>
+            <div class="channel"><span class="k">Email</span><span>hello@northbyte.dev</span></div>
+            <div class="channel"><span class="k">Response</span><span>&lt; 1 business day</span></div>
+            <div class="channel"><span class="k">Timezone</span><span>Remote · GMT ±6</span></div>
           </div>
 
-          <form id="enquiry-form" novalidate>
-            <div class="form-grid">
-              <div class="field">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" autocomplete="name"
-                       placeholder="Jane Doe" required
-                       aria-describedby="name-error" />
-                <span class="error-msg" id="name-error" role="alert"></span>
-              </div>
-
-              <div class="field">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" autocomplete="email"
-                       placeholder="jane@company.com" required
-                       aria-describedby="email-error" />
-                <span class="error-msg" id="email-error" role="alert"></span>
-              </div>
-
-              <div class="field">
-                <label for="phone">Phone <span class="optional">(optional)</span></label>
-                <input type="tel" id="phone" name="phone" autocomplete="tel"
-                       placeholder="+1 555 123 4567"
-                       aria-describedby="phone-error" />
-                <span class="error-msg" id="phone-error" role="alert"></span>
-              </div>
-
-              <div class="field">
-                <label for="service">Service interested in</label>
-                <select id="service" name="service">
-                  <option value="Web App">Web App</option>
-                  <option value="Mobile App">Mobile App</option>
-                  <option value="API / Backend">API / Backend</option>
-                  <option value="Cloud / DevOps">Cloud / DevOps</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-
-              <div class="field field-full">
-                <label for="message">Message</label>
-                <textarea id="message" name="message"
-                          placeholder="Tell us a bit about what you're building..."
-                          required aria-describedby="message-error"></textarea>
-                <span class="error-msg" id="message-error" role="alert"></span>
-              </div>
-
-              <div class="field field-full">
-                <button type="submit" class="btn btn-primary btn-block">Send Enquiry</button>
-              </div>
+          <div class="form-wrap">
+            <!-- Confirmation banner (revealed by JS on success) -->
+            <div class="form-success" id="form-success" role="status" aria-live="polite">
+              <span aria-hidden="true">✓</span>
+              <span>Brief received. We'll reply within one business day.</span>
             </div>
-          </form>
+
+            <form id="enquiry-form" novalidate>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" autocomplete="name"
+                         placeholder="Jane Doe" required
+                         aria-describedby="name-error" />
+                  <span class="error-msg" id="name-error" role="alert"></span>
+                </div>
+
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" autocomplete="email"
+                         placeholder="jane@company.com" required
+                         aria-describedby="email-error" />
+                  <span class="error-msg" id="email-error" role="alert"></span>
+                </div>
+
+                <div class="field">
+                  <label for="phone">Phone <span class="optional">(optional)</span></label>
+                  <input type="tel" id="phone" name="phone" autocomplete="tel"
+                         placeholder="+1 555 123 4567"
+                         aria-describedby="phone-error" />
+                  <span class="error-msg" id="phone-error" role="alert"></span>
+                </div>
+
+                <div class="field">
+                  <label for="service">What you need</label>
+                  <select id="service" name="service">
+                    <option value="Web App">Web or SaaS app</option>
+                    <option value="Mobile App">Mobile app</option>
+                    <option value="API / Backend">API / backend</option>
+                    <option value="Cloud / DevOps">Cloud / DevOps</option>
+                    <option value="Other">Something else</option>
+                  </select>
+                </div>
+
+                <div class="field field-full">
+                  <label for="message">About the project</label>
+                  <textarea id="message" name="message"
+                            placeholder="What are you building, and what's the deadline pressure?"
+                            required aria-describedby="message-error"></textarea>
+                  <span class="error-msg" id="message-error" role="alert"></span>
+                </div>
+
+                <div class="field field-full">
+                  <button type="submit" class="btn btn-primary btn-block">Send project brief <span class="arrow">→</span></button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -560,7 +982,9 @@
   <!-- ============ Footer ============ -->
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; <span id="year"></span> Northbyte Software. All rights reserved.</p>
+      <a class="logo" href="#home"><span class="glyph">nb</span> Northbyte</a>
+      <p class="legal">&copy; <span id="year"></span> Northbyte Software · Built by hand, shipped on time.</p>
+      <p style="margin:0;"><a href="#contact">Start a project →</a></p>
     </div>
   </footer>
 
@@ -571,11 +995,57 @@
       // Keep the footer year current.
       document.getElementById('year').textContent = new Date().getFullYear();
 
-      // --- "Get a Quote" CTA: smooth scroll is handled in CSS; here we add
+      // --- Hero build log: type out a deploy, line by line. Purely decorative,
+      //     so it's aria-hidden and skipped entirely under reduced-motion. ---
+      (function buildLog() {
+        var host = document.getElementById('build-log');
+        if (!host) return;
+
+        // Each entry is a finished line of CI output, as ready-to-inject HTML.
+        var LINES = [
+          '<span class="t-dim">$</span> northbyte deploy <span class="t-flag">--client</span> acme',
+          '<span class="t-arrow">→</span> provisioning infrastructure …… <span class="t-ok">ok</span>',
+          '<span class="t-arrow">→</span> running migrations …………… <span class="t-ok">ok</span>',
+          '<span class="t-arrow">→</span> test suite (1,284 specs) …… <span class="t-ok">pass</span>',
+          '<span class="t-arrow">→</span> building containers ………… <span class="t-ok">ok</span>',
+          '<span class="t-pass">✓</span> shipped to production in 3m 41s',
+          '  <span class="t-url">https://acme.app</span> · 99.98% uptime'
+        ];
+
+        function renderAll(withCursor) {
+          host.innerHTML = LINES
+            .map(function (l) { return '<span class="t-line is-in">' + l + '</span>'; })
+            .join('');
+          if (withCursor) {
+            var c = document.createElement('span');
+            c.className = 't-cursor';
+            host.appendChild(c);
+          }
+        }
+
+        var reduce = window.matchMedia &&
+                     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) { renderAll(false); return; }
+
+        // Animated path: reveal the pre-rendered lines one at a time.
+        host.classList.add('anim');
+        renderAll(true);
+        var lineEls = host.querySelectorAll('.t-line');
+        lineEls.forEach(function (el) { el.classList.remove('is-in'); });
+
+        var i = 0;
+        (function step() {
+          if (i >= lineEls.length) return;
+          lineEls[i].classList.add('is-in');
+          i += 1;
+          window.setTimeout(step, 480);
+        })();
+      })();
+
+      // --- "Start a project" CTA: smooth scroll is handled in CSS; here we add
       //     focus management so keyboard users land on the first field. ---
       var heroCta = document.getElementById('hero-cta');
       heroCta.addEventListener('click', function () {
-        // Defer focus until after the smooth scroll begins.
         window.setTimeout(function () {
           document.getElementById('name').focus();
         }, 600);
@@ -589,10 +1059,10 @@
 
       // Field id -> validation rule. `optional` fields only validate when filled.
       var FIELDS = [
-        { id: 'name',    required: true,  message: 'Please enter your name.' },
-        { id: 'email',   required: true,  message: 'Please enter your email.',
-          pattern: EMAIL_RE, patternMessage: 'Please enter a valid email address.' },
-        { id: 'message', required: true,  message: 'Please enter a message.' }
+        { id: 'name',    required: true,  message: 'Enter your name.' },
+        { id: 'email',   required: true,  message: 'Enter your email.',
+          pattern: EMAIL_RE, patternMessage: 'Enter a valid email address.' },
+        { id: 'message', required: true,  message: 'Tell us a little about the project.' }
       ];
 
       function setError(id, msg) {

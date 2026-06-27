@@ -6,7 +6,7 @@ A single-page marketing / landing website for a (fictional) custom software deve
 
 ## About
 
-Built with **plain HTML, CSS, and vanilla JavaScript** — no frameworks, no build step, no package manager, no dependencies. The only external resource is Google Fonts (Inter + Space Grotesk), loaded via CDN with a system-font fallback so the page degrades gracefully offline.
+Built with **plain HTML, CSS, and vanilla JavaScript** — no frameworks, no build step, no package manager, no dependencies. The only external resource is Google Fonts (Inter + Archivo + JetBrains Mono), loaded via CDN with a system-font fallback so the page degrades gracefully offline.
 
 Everything lives in a single self-contained [`index.html`](index.html):
 
@@ -27,6 +27,10 @@ open index.html        # macOS
 ```
 
 Any change is reflected by reloading the page.
+
+## SEO
+
+The page ships with discoverability metadata baked in: a canonical URL, Open Graph + Twitter Card tags for rich social/AI-search previews, and `ProfessionalService` + `WebSite` JSON-LD structured data. [`robots.txt`](robots.txt) and [`sitemap.xml`](sitemap.xml) at the repo root are served alongside the page for crawlers.
 
 ## Deployment
 
